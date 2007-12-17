@@ -20,7 +20,6 @@ Patch0:         mailody-fix-smtp-gmail.patch
 Patch1:         mailody-imapmanager_removeflagfix.patch
 
 
-BuildRoot:      %_tmppath/%name-%version-%release-buildroot
 
 BuildRequires: kdelibs-devel
 BuildRequires: X11-devel
