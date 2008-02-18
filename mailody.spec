@@ -9,7 +9,7 @@
 
 Name:           %{name}
 Version:        %{version}
-Summary:        Mailody is a IMAP only, Qt/KDE based mail client 
+Summary:        IMAP only, Qt/KDE based mail client 
 Release:        %mkrel 1
 License:        GPL
 Group:          Networking/Mail
