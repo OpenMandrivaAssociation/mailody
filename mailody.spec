@@ -10,7 +10,7 @@
 Name:           %{name}
 Version:        %{version}
 Summary:        IMAP only, Qt/KDE based mail client 
-Release:        %mkrel 2
+Release:        %mkrel 4
 License:        GPL
 Group:          Networking/Mail
 URL:            http://mailody.net
