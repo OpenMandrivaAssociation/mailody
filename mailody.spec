@@ -1,6 +1,6 @@
 # Basic macros
 %define name    mailody 
-%define version 0.5.0
+%define version 1.5.0
 
 # Macros for in the menu-file.
 %define section Internet 
@@ -9,70 +9,56 @@
 
 Name:           %{name}
 Version:        %{version}
-Summary:        IMAP only, Qt/KDE based mail client 
-Release:        %mkrel 4
+Summary:        IMAP only, Qt4/KDE4 based mail client 
+Release:        %mkrel 0.beta1.1
 License:        GPL
 Group:          Networking/Mail
 URL:            http://mailody.net
 
-Source0:        http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
-Patch0:         mailody-fix-smtp-gmail.patch
-Patch1:         mailody-imapmanager_removeflagfix.patch
-
+Source0:        http://prdownloads.sourceforge.net/%{name}/kde4-%{name}-%{version}beta1.tar.bz2
 
 BuildRoot:      %_tmppath/%name-%version-%release-buildroot
 
-BuildRequires: kdelibs-devel
-BuildRequires: X11-devel
+BuildRequires: kdelibs4-devel
 BuildRequires: libsqlite3-devel
 BuildRequires: libqca-devel
-BuildRequires: desktop-file-utils
+BuildRequires: kdeedu4-devel
+BuildRequires: kdepimlibs4-devel
+BuildRequires: boost-devel
 
 %description
 Mailody is an IMAP-only mail client. Based on Qt and KDE.
 
+%files  -f %{name}.lang
+%defattr(-,root,root)
+%{_kde_bindir}/%{name}
+%{_kde_appsdir}/%{name}
+%{_kde_datadir}/applications/kde4/%{name}.desktop
+%{_kde_iconsdir}/*/*/*/*
+%{_kde_libdir}/kde4/kontact_mailodyplugin.so
+%{_kde_libdir}/kde4/mailodypart.so
+%{_kde_datadir}/dbus-1/interfaces/net.mailody.mainwindow.xml
+%{_kde_datadir}/kde4/services/kontact/mailody_plugin.desktop
+%{_kde_datadir}/kde4/services/mailodypart.desktop
+%{_kde_docdir}/HTML/en/mailody
+
+#--------------------------------------------------------------------
+
 %prep
-%setup -q  -n %{name}-%{version}
-(
-%patch0 -p0
-%patch1 -p1
-)
+%setup -q  -n kde4-%{name}-%{version}beta1
 
 %build
-make -f Makefile.cvs
-%configure
+
+%cmake_kde4
 %make
 
 
 %install
 rm -rf %buildroot
-%makeinstall
-desktop-file-install --vendor="" \
-  --add-category="Network" \
-  --add-category="Email" \
-  --dir $RPM_BUILD_ROOT%{_datadir}/applications/kde %{name}/src/%{name}.desktop
-
-
+cd build
+make DESTDIR=%buildroot install
+cd ..
 %{find_lang} %{name}
-
-%if %mdkversion < 200900
-%post
-%update_menus
-%endif
-
-%if %mdkversion < 200900
-%postun
-%clean_menus
-%endif
-
-%files  -f %{name}.lang
-%defattr(-,root,root)
-%doc README COPYING AUTHORS ChangeLog INSTALL NEWS
-%{_bindir}/%{name}
-%{_datadir}/apps/%{name}
-%{_datadir}/applications/kde/%{name}.desktop
-%{_iconsdir}/*/*/*/*
-%{_docdir}/HTML/en/mailody
 
 %clean
 rm -rf %{buildroot}
