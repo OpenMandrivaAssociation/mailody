@@ -11,7 +11,7 @@
 Name:           %{name}
 Version:        %{version}
 Summary:        IMAP only, Qt4/KDE4 based mail client 
-Release:        %mkrel 0.svn%{svn}.1
+Release:        %mkrel 0.svn%{svn}.2
 License:        GPL
 Group:          Networking/Mail
 URL:            http://mailody.net
@@ -21,8 +21,8 @@ Source0:        %{name}-svn%{svn}.tar.bz2
 BuildRoot:      %_tmppath/%name-%version-%release-buildroot
 
 BuildRequires: kdelibs4-devel
-BuildRequires: libsqlite3-devel
-BuildRequires: libqca-devel
+BuildRequires: sqlite3-devel
+BuildRequires: qca2-devel
 BuildRequires: kdeedu4-devel
 BuildRequires: kdepimlibs4-devel
 BuildRequires: kdepim4-runtime-devel
