@@ -1,7 +1,7 @@
 # Basic macros
 %define name    mailody 
 %define version 1.5.0
-%define svn	1024808
+%define svn	1079981
 
 # Macros for in the menu-file.
 %define section Internet 
@@ -11,8 +11,8 @@
 Name:           %{name}
 Version:        %{version}
 Summary:        IMAP only, Qt4/KDE4 based mail client 
-Release:        %mkrel 0.svn%{svn}.2
-License:        GPL
+Release:        %mkrel 0.svn%{svn}.1
+License:        GPLv2+
 Group:          Networking/Mail
 URL:            http://mailody.net
 
@@ -34,9 +34,10 @@ Mailody is an IMAP-only mail client. Based on Qt and KDE.
 
 %files  -f %{name}.lang
 %defattr(-,root,root)
-%{_kde_bindir}/%{name}
-%{_kde_appsdir}/%{name}
-%{_kde_datadir}/applications/kde4/%{name}.desktop
+%{_kde_bindir}/%{name}*
+%{_kde_appsdir}/%{name}/*rc
+%{_kde_appsdir}/%{name}mailviewer/%{name}mailviewerui.rc
+%{_kde_datadir}/applications/kde4/%{name}*.desktop
 %{_kde_iconsdir}/*/*/*/*
 %{_kde_libdir}/kde4/kontact_mailodyplugin.so
 %{_kde_libdir}/kde4/mailodypart.so
