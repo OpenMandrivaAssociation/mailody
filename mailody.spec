@@ -11,7 +11,7 @@
 Name:           %{name}
 Version:        %{version}
 Summary:        IMAP only, Qt4/KDE4 based mail client 
-Release:        %mkrel 0.svn%{svn}.1
+Release:        %mkrel 0.svn%{svn}.2
 License:        GPLv2+
 Group:          Networking/Mail
 URL:            http://mailody.net
