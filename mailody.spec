@@ -20,6 +20,7 @@ Source0:        %{name}-svn%{svn}.tar.bz2
 
 BuildRoot:      %_tmppath/%name-%version-%release-buildroot
 
+BuildRequires:	make
 BuildRequires: kdelibs4-devel
 BuildRequires: sqlite3-devel
 BuildRequires: qca2-devel
